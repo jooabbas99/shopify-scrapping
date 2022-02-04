@@ -12,6 +12,7 @@ import json
 if __name__ == '__main__':
     domian = sys.argv[1]
     products = []
+    i = 1
     while(True):
         url = f'https://{domian}/products.json?limit=250&page={i}'
         data = requests.get(url)
@@ -21,6 +22,7 @@ if __name__ == '__main__':
 
         for j in json_data['products']:
             products.append(j)
+        i += 1 
     print('items found : ' + str(len(products)))
     with open(f'{domian}_products.json', 'w') as f:
         json.dump(products, f)
